@@ -1,0 +1,479 @@
+/*Base Elements*/
+html,body{
+      width:100%;
+      height:100%;
+      margin:0;
+      padding:0;
+      overflow-x: hidden;
+}
+
+html {
+  min-height:100%;
+}
+
+body{
+  background-image: url("https://www.teahub.io/photos/full/2-28817_chinese-background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h2,h3,h4{
+  font-family: "Andalé Mono";
+}
+@media only screen and (min-width: 577px) and (max-width: 768px){
+  h1{
+    font-size:300%;
+  }
+  h2,h3,h4{
+    font-size:200%;
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 992px){
+  h1{
+    font-size:450%;
+  }
+  h2,h3,h4{
+    font-size:300%;
+  }
+}
+
+
+button:focus{
+  background-color: rgb(190, 162, 69);
+}
+button{
+  font-size: 200%;
+  background-color: rgb(245, 208, 88);
+  font-family: "Century Gothic";
+  width: 25rem;
+  height:4.7rem;
+}
+@media only screen and (max-width: 576px){
+  button{
+    font-size: 200%;
+    background-color: rgb(245, 208, 88);
+    font-family: "Century Gothic";
+    width: 23rem;
+    height:7rem;
+  }
+}
+@media only screen and (min-width: 577px) and (max-width: 768px){
+  button{
+    text-align: center;
+    font-size: 200%;
+    background-color: rgb(245, 208, 88);
+    font-family: "Century Gothic";
+    width: 46rem;
+    height:9rem;
+    font-size: 400%;
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 992px){
+  button{
+    text-align: center;
+    background-color: rgb(245, 208, 88);
+    font-family: "Century Gothic";
+    width: 55rem;
+    height:15rem;
+    font-size: 550%;
+  }
+}
+
+textarea{
+  font-family: "Andalé Mono";
+  resize: none;
+  border: 0.15em solid black;
+  font-size: 200%;
+  text-align: left;
+  width: 45.5rem;
+  height: 16rem;
+  outline: none;
+}
+@media only screen and (max-width: 576px){
+  textarea{
+    display: block;
+    max-width:100%;
+    font-family: "Andalé Mono";
+    resize: none;
+    border: 0.15em solid black;
+    font-size: 200%;
+    text-align: left;
+    width: 22rem;
+    height: 24rem;
+    outline: none;
+  }
+}
+@media only screen and (min-width: 577px) and (max-width: 768px){
+    textarea{
+    max-width:100%;
+    font-family: "Andalé Mono";
+    resize: none;
+    border: 0.15em solid black;
+    font-size: 300%;
+    text-align: left;
+    width: 45rem;
+    height: 30rem;
+    outline: none;
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 992px){
+  textarea{
+    max-width:100%;
+    font-family: "Andalé Mono";
+    resize: none;
+    border: 0.15em solid black;
+    font-size: 500%;
+    text-align: left;
+    width: 53rem;
+    height: 58rem;
+    outline: none;
+  }
+}
+
+footer{
+  display: flex;
+  flex-direction: column;
+  position:relative;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+@media only screen and (max-width: 576px){
+  footer{
+    position:absolute;
+    bottom:0;
+    flex-direction: column;
+    position:relative;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+}
+
+/*SHARED ON PAGE 1&2:*/
+
+/*Container*/
+.container{
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+@media only screen and (max-width: 576px){
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    }
+}
+@media only screen and (min-width: 577px) and (max-width: 768px){
+  .container{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    }
+}
+
+/*Display None*/
+#textArea,
+#likesArea,
+#dateArea,
+#likeNumbers,
+#updoot,
+#downdoot,
+#hUp,
+#hDown,
+#initLikes,
+#date,
+#remaining{
+  display: none;
+}
+
+/*Likes & Date box*/
+#likesArea,
+#dateArea{
+  width: 22.5rem;
+  height: 5%;
+  font-size: 170%;
+  border: none;
+  background: transparent;
+}
+
+#likesArea{
+  text-align: left;
+  transform: translate(1%,-60%);
+}
+
+#dateArea{
+  text-align: right;
+  transform: translate(102%,-155%);
+}
+
+@media only screen and (max-width: 576px){
+    #likesArea,
+    #dateArea{
+      border: 0.15em solid black;
+      width:22rem;
+      text-align: center;
+      background-color: white;
+    }
+    #likesArea{
+      transform: translate(0%,0%);
+    }
+    #dateArea{
+      transform: translate(0%,0%);
+    }
+}
+@media only screen and (min-width: 577px) and (max-width: 768px){
+    #likesArea,
+    #dateArea{
+      font-size:300%;
+      border: 0.15em solid black;
+      width:45rem;
+      text-align: center;
+      background-color: white;
+    }
+    #likesArea{
+      transform: translate(0%,0%);
+    }
+    #dateArea{
+      transform: translate(0%,0%);
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 992px){
+  #likesArea,
+  #dateArea{
+    font-size: 450%;
+    border: 0.2em solid black;
+    width:52.5rem;
+    text-align: center;
+    background-color: white;
+  }
+  #likesArea{
+    transform: translate(0%,0%);
+  }
+  #dateArea{
+    transform: translate(0%,0%);
+  }
+}
+
+/*Animations*/
+.fadeOut {
+  animation: fadeOut 1.3s;
+    opacity: 0;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+  opacity: 0;
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 1.3s;
+   opacity: 1;
+  animation-delay: 1.3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+  opacity: 1;
+  }
+}
+
+.is-paused {
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+
+/*Github*/
+#github{
+  width: 3%;
+  height: 3%;
+}
+@media only screen and (max-width: 576px){
+    #github{
+      width: 15%;
+      height: 15%;
+    }
+}
+@media only screen and (min-width: 577px) and (max-width: 768px){
+    #github{
+      width: 10%;
+      height: 10%;
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 992px){
+  #github{
+    width: 12%;
+    height: 12%;
+  }
+}
+
+#github:hover{
+  opacity: 50%;
+}
+
+/*Cookie Image*/
+#cookieButton{
+  align-items: center;
+  justify-content: center;
+  max-width:30%;
+  max-height: 30%;
+}
+@media only screen and (max-width: 576px){
+    #cookieButton{
+      padding-top: 0.4rem;
+      max-width:95%;
+      max-height: 80%;
+  }
+}
+@media only screen and (min-width: 577px) and (max-width: 768px){
+  #cookieButton{
+    padding-top: 0.4rem;
+    max-width:100%;
+    max-height: 38rem;
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 992px){
+  #cookieButton{
+    padding-top: 1rem;
+    max-width:120%;
+    max-height: 50rem;
+  }
+}
+
+
+/*Upvote & Downvote*/
+#updoot,
+#downdoot{
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+}
+#updoot{
+  background-color: #04d952;
+}
+#downdoot{
+  background-color: #f20a0e;
+}
+
+/*PAGE 2 ONLY:*/
+
+/*Main textarea*/
+#remainingArea{
+  display: flex;
+  font-size: 150%;
+  text-align: center;
+  border: none;
+  background-color:transparent; 
+  width: 20rem;
+  height: 5%;
+}
+@media only screen and (max-width: 576px){
+  #remainingArea{
+    display: flex;
+    font-size: 175%;
+    text-align: center;
+    border: none;
+    background-color:transparent; 
+    width: 20rem;
+    height: 5%;
+  }
+}
+@media only screen and (min-width: 577px) and (max-width: 768px){
+  #remainingArea{
+    display: flex;
+    font-size: 250%;
+    text-align: center;
+    border: none;
+    background-color:transparent; 
+    width: 25rem;
+    height: 5%;
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 992px){
+  #remainingArea{
+    display: flex;
+    font-size: 350%;
+    text-align: center;
+    border: none;
+    background-color:transparent; 
+    width: 30rem;
+    height: 5%;
+  }
+}
+
+/*Font Selector Text*/
+#label{
+  font-size: 125%;
+}
+@media only screen and (max-width: 576px){
+  #label{
+    font-size: 150%;
+  }
+}
+@media only screen and (min-width: 577px) and (max-width: 768px){
+  #label{
+    font-size: 200%;
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 992px){
+  #label{
+    font-size: 350%;
+  }
+}
+/*Font Selector body*/
+/*base*/
+#fonts{
+  font-size:100%;
+}
+@media only screen and (max-width: 576px){
+  #fonts{
+    font-size:125%;
+  }
+}
+@media only screen and (min-width: 577px) and (max-width: 768px){
+  #fonts{
+    font-size:175%;
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 992px){
+  #fonts{
+    font-size:225%;
+  }
+}
+
+/*tree*/
+#fontTree{
+  display:block;
+}
+@media only screen and (max-width: 576px){
+    #fontTree{
+      display:flex;
+    }
+}
+@media only screen and (min-width: 577px) and (max-width: 768px){
+  #fontTree{
+    display:flex;
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 992px){
+  #fontTree{
+    display:flex;
+  }
+}

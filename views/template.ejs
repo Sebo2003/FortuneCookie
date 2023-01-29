@@ -1,0 +1,159 @@
+<!--
+This is the main page of the website. It is responsible for fetching and updating data and displaying
+it to the user.
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="intro.css">
+	 <link rel="icon" type="image/png" href="https://i.imgur.com/RqDX0bU.png">
+	<title>Fortune Cookie</title>
+</head>
+
+<body>
+	<% let text = numbers.usertext%>
+	<% let font = numbers.fontType%>
+	<% let date = numbers.date%>
+	<% let randomClicks = Math.floor(Math.random() * (14 - 4) + 4)%>
+	<% let initialLikes = parseInt(numbers.likes) %>
+
+	<!--Main top-->
+	<div class="container">
+		<h1 style="font-family:Century Gothic;">Fortune Cookies</h1>
+		<img id="cookieButton" class="fadeOut is-paused" src="https://i.imgur.com/RqDX0bU.png" alt="cookie" onclick="decreaser()">
+
+		<div>
+			<textarea readonly id="textArea" class="fadeIn is-paused"></textarea>
+			<div style="flex-direction: row;">
+				<textarea readonly id="likesArea" class="fadeIn is-paused"></textarea>
+				<textarea readonly id="dateArea" class="fadeIn is-paused"></textarea>
+			</div>
+		</div>	
+	</div>
+	
+	<div class="container" style="flex-direction: row;">
+		<!--First set-->
+	    <div>
+			<form action="/new" method="GET">
+				<button id="newOne" class="center fadeOut is-paused" type="submit">Different Fortune</button>	
+			</form>
+		</div>
+		<div>
+			<a href="second.html" id="page2" class="fadeOut is-paused"><button>Contribute Wisdom</button></a>
+		</div>
+		<!--Second set-->
+		<div>
+			<form action="/likes" method="POST">
+				<button id="updoot">△ Upvote!</button>
+		    </form>
+		</div>
+		<div>
+		    <form action="/dislikes" method="POST">
+		    	<button id="downdoot" type="submit">▽ Downvote!</button>
+		    </form>
+		</div>
+		    	
+	</div>	
+</body>
+
+<footer>
+	<a href="https://github.com/Sebo2003/fortuneCookie" style="text-align: center;">
+		<img src="https://i.imgur.com/B0M4QM4.png" id="github" alt="GitHub">
+	</a>
+</footer>
+
+<script>
+
+let randomClicks = <%= randomClicks %>;
+let initialLikes = <%= initialLikes%>;
+let text = "<%= text %>";
+let font = "<%= font %>";
+let date = "<%= date %>";
+
+let minusOneRandomClick = randomClicks-1;
+let threeQuartersRandomClicks = Math.round(randomClicks*0.75);
+let halfRandomClicks = Math.round(randomClicks*0.5);
+let quarterRandomClicks = Math.round(randomClicks*0.25);
+
+let randomAngle = Math.floor(Math.random() * (360 - 1) + 1);
+
+const cookieButton = document.getElementById("cookieButton");
+const textArea = document.getElementById("textArea");
+const likesArea = document.getElementById("likesArea");
+const dateArea = document.getElementById("dateArea");
+
+textArea.style.fontFamily = font;
+likesArea.style.fontFamily = font;
+dateArea.style.fontFamily = font;
+
+let publsihed = "Published: "+date;
+let likes = "Wisdom Points: "+initialLikes;
+
+const up = document.getElementById("updoot");
+const down = document.getElementById("downdoot");
+const newOne = document.getElementById("newOne");
+const page2 = document.getElementById("page2");
+
+cookieButton.style.filter = `hue-rotate(${randomAngle.toString()}deg)`;
+console.log("random angle: "+randomAngle);
+
+function decreaser(){
+	randomClicks -= 1;
+	console.log(randomClicks);
+	if(randomClicks == 0){
+		cookieButton.src="https://i.imgur.com/S2pmi0k.png";
+		cookieButton.classList.remove('is-paused');
+		newOne.classList.remove('is-paused');
+		page2.classList.remove('is-paused');
+		cookieButton.addEventListener("animationend", () =>{
+			cookieButton.style.display = "none";
+			newOne.style.display = "none";
+			page2.style.display = "none";
+
+			textArea.value = text;
+			textArea.style.display = "block";
+
+			likesArea.value = likes;
+			likesArea.style.display = "block";
+
+			dateArea.value = publsihed;
+			dateArea.style.display = "block";
+
+			up.style.display = "block";
+			down.style.display = "block";	
+		})
+	}
+	else if (randomClicks == minusOneRandomClick){
+		cookieButton.src="https://i.imgur.com/MtfG8JE.png";
+	}
+	else if(randomClicks == threeQuartersRandomClicks){
+		cookieButton.src="https://i.imgur.com/Np6Xen7.png";
+	}
+	else if(randomClicks == halfRandomClicks){
+		cookieButton.src="https://i.imgur.com/NEjF9PH.png";
+	}
+	else if(randomClicks == quarterRandomClicks){
+		cookieButton.src="https://i.imgur.com/n2N9Cmi.png";
+	}
+}
+
+up.addEventListener("click", () => {
+	upByOne = initialLikes+=1;
+	up.style.backgroundColor = "#048533";
+	updatedLikes = "Wisdom Points: "+upByOne;
+	likesArea.value = updatedLikes;
+});
+
+down.addEventListener("click", () => {
+	downByOne = initialLikes-=1;
+	down.style.backgroundColor = "#8f090b";
+	updatedLikes = "Wisdom Points: "+downByOne;
+	likesArea.value = updatedLikes;
+});
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!--
+This is the second page of the website. It is responsible for the submission of user
+data in accordance to the parameters the user set (which font style and what the text
+is. The date is noneditable and is also submitted with the user data.)
+-->
+<!DOCTYPE html>
+
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="intro.css">
+   <link rel="icon" type="image/png" href="https://i.imgur.com/RqDX0bU.png">
+   <title>Fortune Cookie</title>
+</head>
+
+<!--Intro Text-->
+<body>
+   <div class="container" style="text-align: center;">
+      <h2 style="font-family:Century Gothic;">Contribute some wisdom, and let others rate it. You'll be booted to the main page upon submission.</h2>
+      <div class="container">
+         <h2 style="font-family:Century Gothic;">Concise sentences only, no indentation allowed. Don't press "enter".</h2>
+      </div>
+   </div>
+<!--Form-->
+   <div class="container">
+      <form action="/fortuneCookieDB" method="POST">
+         <input id="initLikes" name="likes" type="number" step="1" value="0" readonly>
+         <input type="text" name="date" id="date" readonly>
+         <!--Font & Characters-->
+         <div class="container">
+            <textarea id="remainingArea"></textarea>
+         </div>
+         <div class="container">
+            <div id="fontTree">  
+               <div>
+                  <b><label id="label" style="font-family:Century Gothic;" for="fonts">Choose a font:</label></b>
+               </div>
+                  <select name="fontType" id="fonts" onchange="getSelectValue();">
+                     <option value="Arial" style="font-family:Arial;">Arial</option>
+                     <option value="Arial Black" style="font-family:Arial Black;">Arial Black</option>
+                     <option value="Bodoni MT" style="font-family:Bodoni MT;">Bodoni MT</option>
+                     <option value="Brush Script MT" style="font-family:Brush Script MT;">Brush Script MT</option>
+                     <option value="Century Gothic" style="font-family:Century Gothic;">Century Gothic</option>
+                     <option value="Comic Sans MS" style="font-family:Comic Sans MS;">Comic Sans MS</option>
+                     <option value="Copperplate Gothic" style="font-family:Copperplate Gothic;">Copperplate Gothic</option>
+                     <option value="Courier New" style="font-family:Courier New;">Courier New</option>
+                     <option value="Georgia" style="font-family:Georgia;">Georgia</option>
+                     <option value="Goudy Old Style" style="font-family:Goudy Old Style;">Goudy Old Style</option>
+                     <option value="Helvetica" style="font-family:Helvetica;">Helvetica</option>
+                     <option value="Impact" style="font-family:Impact;">Impact</option>
+                     <option value="Tahoma" style="font-family:Tahoma;">Tahoma</option>
+                     <option value="Times New Roman" style="font-family:Times New Roman;">Times New Roman</option>
+                     <option value="Trebuchet MS" style="font-family:Trebuchet MS;">Trebuchet MS</option>
+                     <option value="Verdana" style="font-family:Verdana;">Verdana</option>
+                  </select>      
+               </div>
+            </div>
+         <textarea value="" id="textbox" name="usertext" maxlength="100" placeholder="Write your fortune:" onchange="handleChange(this)"></textarea>
+         </div>
+         <div class="container">
+            <button type="submit" id="submit" onclick="return handleChange(); submission()">Contribute Wisdom</button>
+         </div>
+      </form>
+   </div>
+</body>
+
+<footer>
+	<img src="https://i.imgur.com/B0M4QM4.png" id="github" alt="GitHub">
+</footer>
+
+
+<script>
+   date = document.getElementById("date");
+   textbox = document.getElementById("textbox");
+   remainingBox = document.getElementById("remainingArea")
+   remaining = document.getElementById("remaining");
+   fonts = document.getElementById("fonts");
+   label = document.getElementById("label");
+   color = document.getElementById("color");
+   submit = document.getElementById("submit");
+
+   remainingBox.value = "100 characters left";
+
+   textbox.addEventListener("input", () =>{
+      let left = 100 - textbox.value.length;
+      remainingBox.value = `${left} characters left`;
+      let x = textbox.value
+   });
+
+   const d = new Date();
+   let month = d.getMonth()+1;
+   let full = `${d.getFullYear().toString()}-${month}-${d.getDate().toString()}`;
+   date.value = full;
+
+   console.log(full);
+
+   function getSelectValue(){
+      selectedValue = fonts.value;
+      textbox.style.fontFamily = selectedValue;
+      fonts.style.fontFamily = selectedValue;
+   }
+
+    function handleChange(input) {
+        if (textbox.value < 0 || textbox.value === "") {
+            alert("Unwise! Do not submit empty data!");
+            return false;
+        }
+        return true;
+    }
+
+    textbox.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        alert("Unwise. You were told no indentation allowed. You did not listen.");
+        window.location.reload();
+    }
+});
+ 
+</script>
